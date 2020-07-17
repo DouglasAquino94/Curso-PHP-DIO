@@ -11,10 +11,17 @@
     //Array na tela
     //print_r($categorias);
 
-    $nome = 'Eduardo';
-    $idade = '50';
-    
+    $nome = $_POST['nome'];
+    $idade = $_POST['idade'];
 
+    if(empty($nome) || strlen($nome) < 3 || strlen($nome) > 20){
+        echo 'O campo "nome" deve conter de 3 á 20 caracteres!';
+    }
+
+    if(!is_numeric($idade)){
+        echo 'Idade inválida!';
+    }
+    
     //var_dump($nome);
     //var_dump($idade);
 
@@ -47,7 +54,7 @@
         }
     
     } else {
-        echo 'Idade inválida ou não permitida!';
+        echo 'A idade informada não se encaixa em nenhuma das categorias disponíveis!';
     }
 
 ?>

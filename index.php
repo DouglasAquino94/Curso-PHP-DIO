@@ -7,10 +7,10 @@
 </head>
 <body>
     <h3>Dados pessoais</h3>
-    <form action="processaDados.php" method="post">
+    <form action="script.php" method="post">
         <p>Nome: <input type="text" name="nome" id="nome"></p>
         <p>Idade: <input type="text" name="idade" id="idade"></p>
-        <p><input type="button" value="Enviar"></p>
+        <p><input type="submit" value="Enviar"></p>
     </form>    
 </body>
 </html>
