@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     //Array vazio
     $categorias = [];
 
@@ -15,11 +17,15 @@
     $idade = $_POST['idade'];
 
     if(empty($nome) || strlen($nome) < 3 || strlen($nome) > 20){
-        echo 'O campo "nome" deve conter de 3 á 20 caracteres!';
+        $_SESSION['mensagem-de-erro'] = 'O campo "nome" deve conter de 3 á 20 caracteres!';
+        header('location: index.php');
+        return;
     }
 
-    if(!is_numeric($idade)){
-        echo 'Idade inválida!';
+    else if(!is_numeric($idade) || empty($idade) || $idade <= 0){
+        $_SESSION['mensagem-de-erro'] = 'Idade inválida';
+        header('location: index.php');
+        return;
     }
     
     //var_dump($nome);
@@ -28,28 +34,36 @@
     if($idade >= 6 && $idade < 12) {
         for($c = 0; $c < count($categorias); $c++){
             if($categorias[$c] == 'infantil'){
-                echo 'O atleta ',$nome,' vai competir na categoria INFANTIL';
+                $_SESSION['mensagem-de-sucesso'] = 'O atleta '.$nome.' vai competir na categoria INFANTIL';
+                header('location: index.php');
+                return;
             }
         }
 
     } else if ($idade >= 12 && $idade < 18){
         for($c = 0; $c < count($categorias); $c++){
             if($categorias[$c] == 'adolescente'){
-                echo 'O atleta ',$nome,' vai competir na categoria ADOLESCENTE';
+                $_SESSION['mensagem-de-sucesso'] =  'O atleta '.$nome.' vai competir na categoria ADOLESCENTE';
+                header('location: index.php');
+                return;
             }
         }
 
     } else if ($idade >= 18 && $idade < 50) {
         for($c = 0; $c < count($categorias); $c++){
             if($categorias[$c] == 'adulto'){
-                echo 'O atleta ',$nome,' vai competir na categoria ADULTO';
+                $_SESSION['mensagem-de-sucesso'] =  'O atleta '.$nome.' vai competir na categoria ADULTO';
+                header('location: index.php');
+                return;
             }
         }
 
     } else if ($idade >= 50) {
         for($c = 0; $c < count($categorias); $c++){
             if($categorias[$c] == 'idoso'){
-                echo 'O atleta ',$nome,' vai competir na categoria IDOSO';
+                $_SESSION['mensagem-de-sucesso'] = 'O atleta '.$nome.' vai competir na categoria IDOSO';
+                header('location: index.php');
+                return;
             }
         }
     
