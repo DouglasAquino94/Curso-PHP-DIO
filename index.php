@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+    include 'servicos/msgSessao.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +15,12 @@
         
         <?php
             //Operador ternário... Sintaxe: condição ? ação1 : ação2
-            $msgSucesso = isset($_SESSION['mensagem-de-sucesso']) ? $_SESSION['mensagem-de-sucesso'] :'';
+            $msgSucesso = getMsgSucesso();
             if(!empty($msgSucesso)){
                 echo $msgSucesso;
             }
 
-            $msgErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro'] :'';
+            $msgErro = getMsgErro();
             if(!empty($msgErro)){
                 echo $msgErro;
             }
